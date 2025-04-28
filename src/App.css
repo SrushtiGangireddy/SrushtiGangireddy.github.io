@@ -1,38 +1,161 @@
-.App {
-  text-align: center;
+/* Global settings */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #0a192f;
+  background-image: 
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+    radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 1px, transparent 1%),
+    radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.08) 1px, transparent 1%),
+    radial-gradient(circle at 60% 80%, rgba(255, 215, 0, 0.08) 1px, transparent 1%),
+    radial-gradient(circle at 40% 60%, rgba(255, 215, 0, 0.06) 1px, transparent 1%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Inter', sans-serif;
+  color: #ccd6f6;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
+.spotlight-wrapper {
+  position: relative;
+}
+
+.spotlight {
   pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s linear;
+  mix-blend-mode: overlay;
+  z-index: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Layout */
+.container {
   display: flex;
-  flex-direction: column;
+  height: 100vh;
+}
+
+/* Main content layout */
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8rem 6rem;
+}
+
+/* Left intro section */
+.intro {
+  flex: 1;
+}
+
+/* Name */
+.name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+/* Role */
+.role {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #8892b0;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Short description */
+.short-description {
+  font-size: 1.2rem;
+  color: #8892b0;
+  max-width: 400px;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
+
+/* Menu section */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  color: #64ffda;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+/* Sparkle star before each item */
+.menu li::before {
+  content: '✦'; /* Unicode sparkle star */
+  font-size: 1rem;
+  color: #64ffda;
+  margin-right: 14px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Hover or active effect */
+.menu li:hover::before,
+.menu li.active::before {
+  animation: sparkleTwinkle 1s infinite ease-in-out;
+  opacity: 1;
+  transform: scale(1.4) rotate(20deg);
+}
+
+/* Star twinkle animation */
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: scale(1.4) rotate(20deg);
+    opacity: 1;
   }
 }
+
+/* Right about text */
+.about-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #8892b0;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-left: 6rem;
+}
+
+.social-icons {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social-icons a {
+  color: #8892b0;
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #64ffda; /* Light teal hover */
+  transform: scale(1.2);
+}
+
+
